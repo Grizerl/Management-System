@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\Role;
 use Dom\NamedNodeMap;
@@ -10,15 +11,14 @@ use Illuminate\Support\Facades\Route;
         return redirect()->route('login');
     });
 
-    Route::middleware(['auth', 'verified', Role::class])->group(function() {
+    Route::prefix('/panel')->middleware(['auth', 'verified', Role::class])->group(function() {
 
         Route::get('/dashboard', function () {
             return view('dashboard');
         })->name('dashboard');
 
-        Route::get('Manager System', function (){
-            return 1111;
-        })->name('manager_system');
+        Route::get('/home',[DashboardController::class, 'index'])
+            ->name('manager_system');
     });
 
     Route::middleware('auth')->group(function () {

@@ -1,0 +1,113 @@
+@charset "UTF-8";
+@import "https://fonts.googleapis.com/css2?family=Poppins&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Roboto&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Arial&display=swap";
+
+:root {
+    --background-main: #f8f9fa;
+    --background-navbar: #f1f1f1;
+    --border-headline: #dee2e6;
+    --menu-item-color: #2e557d;
+    --headline-color: #888585;
+    --font-Roboto: 'Roboto', sans-serif;
+    --font-Poppins: 'Poppins', sans-serif;
+    --font-Arial: 'Arial', sans-serif;
+}
+
+body {
+    font-family: var(--font-Arial);
+    background-color: var(--background-main);
+}
+  
+*,*::after,*::before {
+    padding: 0;
+    margin: 0;
+    scroll-behavior: smooth;
+}
+
+a {
+  text-decoration: none;
+}
+
+.headline_container {
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--border-headline);
+    background: var(--background-navbar);
+}
+
+.headline_container h2 {
+    font-family: var(--font-Poppins);
+    font-weight: 600;
+    font-size: 1.35rem;
+    word-spacing: 0.1rem;
+    color: var(--headline-color);
+}
+
+.container {
+    display: flex;
+}
+  
+.sidebar {
+    width: 300px;
+    min-height: 100vh;
+    border-right: 1px solid #ddd; 
+    background-color: #f1f1f1;
+    line-height: 25px;
+}
+  
+.sidebar h2 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #555;
+}
+  
+.menu {
+    position: relative;
+}
+
+.menu-item {
+    font-family: var(--font-Roboto);
+    font-weight: 500;
+    font-size: 1.05rem;
+    padding: 13px 20px;
+    color: var(--menu-item-color);
+    border: 1px solid var(--border-headline);
+    cursor: pointer;
+}
+
+.menu-item a {
+    color: var(--menu-item-color);
+}
+
+.fa-regular {
+    position: absolute;
+    right: 10px
+}
+
+.submenu li {
+    font-family: var(--font-Roboto);
+    font-weight: 500;
+    font-size: 1.05rem;
+    margin: 13px 20px;
+    color: var(--menu-item-color);
+    cursor: pointer;
+}
+
+.submenu {
+    display: none;
+    transition: all 0.3s ease;
+}
+
+.submenu.show {
+    display: block;
+}
+
+.toggle-icon {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    margin-left: 10px;
+}
+
+.toggle-icon.rotated {
+    transform: rotate(-90deg);
+}
