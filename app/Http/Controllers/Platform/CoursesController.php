@@ -37,15 +37,7 @@ class CoursesController extends Controller
             'created_at' => $storeRequest['creation_date'],
         ]);
 
-        return redirect()->back()->with('success', 'Course created');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Course $course)
-    {
-        //
+        return redirect()->back()->with('success', 'Course created successfully.');
     }
 
     /**
@@ -60,19 +52,17 @@ class CoursesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreRequest $storeRequest, $id)
+    public function update(Request $request, $id)
     {
         $course = Course::findOrFail($id);
 
-        if(!$course) {
-            return redirect()->back()->with('error', 'Course not available.');
-        }
-
-        $course->update([
-            'short_name' => $storeRequest['short_name'],
-            'full_name' => $storeRequest['full_name'],
-            'created_at' => $storeRequest['creation_date'],
+        $validated = $request->validate([
+            'short_name' => 'required|string|max:50',
+            'full_name' => 'required|string|max:250',
+            'creation_date' => 'required|date',
         ]);
+
+        $course->update($validated);
 
         return redirect()->back()->with('success', 'The course has been successfully updated.');
     }
@@ -84,6 +74,6 @@ class CoursesController extends Controller
     {
         $course = Course::findOrFail($id);
         $course->delete();
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Course deleted successfully.');
     }
 }

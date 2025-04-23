@@ -8,4 +8,9 @@ class Course extends Model
 {
     protected $table = 'courses';
     protected $fillable = ['short_name', 'full_name'];
+
+    public function subject()
+    {
+        return $this->hasMany(Subject::class);
+    }
 }

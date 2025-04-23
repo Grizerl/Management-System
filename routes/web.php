@@ -4,8 +4,6 @@ use App\Http\Controllers\CoursesController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\Role;
-use Dom\NamedNodeMap;
-use Faker\Guesser\Name;
 use Illuminate\Support\Facades\Route;
 
     Route::get('/', function () {
@@ -22,6 +20,8 @@ use Illuminate\Support\Facades\Route;
             ->name('manager_system');
 
         Route::resource('courses', \App\Http\Controllers\Platform\CoursesController::class);
+
+        Route::resource('subjects', \App\Http\Controllers\Platform\SubjectController::class);
         
     });
 

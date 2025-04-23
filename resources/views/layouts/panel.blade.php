@@ -40,10 +40,10 @@
           <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-          <a href="" class="nav-link">Dashboard</a>
+          <a href="{{ route('manager_system') }}" class="nav-link">Home</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-          <a href="" class="nav-link">Course</a>
+          <a href="{{ route('courses.index') }}" class="nav-link">Course</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
           <a href="" class="nav-link">Subject</a>

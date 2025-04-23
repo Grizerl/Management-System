@@ -18,62 +18,64 @@
           <table class="table table-striped projects">
             <thead>
               <tr>
-                <th style="width: 1%">
+                <th style="width: 5%">
                   Id
                 </th>
                 <th style="width: 20%">
-                  Short Name
-                </th>
-                <th style="width: 30%">
-                  Full Name
-                </th>
-                <th>
-                  Created Date
-                </th>
-                <th style="width: 8%" class="text-center">
-                  Status
+                  Subject 1
                 </th>
                 <th style="width: 20%">
+                  Subject 2
+                </th>
+                <th>
+                  Subject 3
+                </th>
+                <th style="width: 25%" class="text-center">
+                    Course
+                </th>
+                <th style="width: 15%">
                 </th>
               </tr>
             </thead>
             <tbody>
-              @foreach ($courses as $course)
+              @foreach ($subject as $subjects)
                 <tr>
                   <td>
-                    {{ $course['id'] }}
+                    {{ $subjects['id'] }}
                   </td>
                   <td>
                     <a>
-                      {{ $course['short_name'] }}
+                      {{ $subjects['subject_1'] }}
                     </a>
                   </td>
                   <td>
                     <a>
-                      {{ $course['full_name'] }}
+                      {{ $subjects['subject_2'] }}
                     </a>
                   </td>
                   <td class="project_progress">
                     <a>
-                      {{ $course['created_at'] }}
+                      {{ $subjects['subject_3'] }}
                     </a>
                   </td>
                   <td class="project-state">
-                    <span class="badge badge-success">Success</span>
+                    <a>
+                      {{ $subjects->course['full_name'] }}
+                    </a>
                   </td>
                   <td class="project-actions text-right d-flex justify-content-center">
-                    <a class="btn btn-info btn-sm mr-2" href="{{ route('courses.edit', $course['id']) }}">
-                      <i class="fas fa-pencil-alt"></i>
-                        Edit
-                    </a>
-                    <form action="{{ route('courses.destroy', $course['id']) }}" method="post">
-                      @csrf
-                      @method('DELETE')
-                        <button type="submit" class="btn btn-danger btn-sm delete-btn">
-                          <i class="fas fa-trash"></i>
-                            Remove
-                        </button>
-                    </form>
+                      <a class="btn btn-info btn-sm mr-2" href="{{ route('subjects.edit', $subjects['id']) }}">
+                        <i class="fas fa-pencil-alt"></i>
+                          Edit
+                      </a>
+                      <form action="{{ route('subjects.destroy', $subjects['id']) }}" method="post">
+                        @csrf
+                        @method('DELETE')
+                          <button type="submit" class="btn btn-danger btn-sm delete-btn">
+                            <i class="fas fa-trash"></i>
+                              Remove
+                          </button>
+                      </form>
                   </td>
                 </tr>
               @endforeach
@@ -81,5 +83,5 @@
           </table>
       </div>
     </div>
-  </section>
+    </section>
 @endsection
