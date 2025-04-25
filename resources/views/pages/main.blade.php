@@ -5,7 +5,7 @@
    <div class="container-fluid">
       <div class="row mb-2">
          <div class="col-sm-6">
-            <h1 class="m-0">Greetings, {{Auth::user()->name}}! You're in the Admin Panel</h1>
+            <h1 class="m-0">Hello, {{Auth::user()->name}}!  Welcome to the Student Management Panel.</h1>
          </div>
       </div>
    </div>
@@ -22,7 +22,7 @@
                <div class="icon">
                   <i class="fa-solid fa-newspaper"></i>
                </div>
-               <a href="" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+               <a href="{{ route('courses.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
          </div>
          <div class="col-lg-3 col-6">
@@ -34,7 +34,7 @@
                <div class="icon">
                   <i class="fa-solid fa-list"></i>
                </div>
-               <a href="" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+               <a href="{{ route('subjects.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
          </div>
          <div class="col-lg-3 col-6">

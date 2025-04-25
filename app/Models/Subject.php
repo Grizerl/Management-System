@@ -13,4 +13,9 @@ class Subject extends Model
     {
         return $this->belongsTo(Course::class);
     }
+
+    public function register()
+    {
+        return $this->hasMany(Register::class);
+    }
 }

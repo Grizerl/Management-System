@@ -4,7 +4,7 @@
   <section class="content">
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title">Projects for Subjects</h3>
+        <h3 class="card-title">See All Enrolled Students</h3>
           <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
               <i class="fas fa-minus"></i>
@@ -21,54 +21,62 @@
                 <th style="width: 5%">
                   Id
                 </th>
-                <th style="width: 20%">
-                  Subject 1
+                <th style="width: 10%">
+                  First Name
                 </th>
-                <th style="width: 20%">
-                  Subject 2
+                <th style="width: 15%">
+                  Middle Initial
+                </th>
+                <th style="width: 15%">
+                  Surname
                 </th>
                 <th>
-                  Subject 3
+                  Emergency Contact Number
                 </th>
                 <th style="width: 25%" class="text-center">
-                    Course
+                  Program
                 </th>
                 <th style="width: 15%">
                 </th>
               </tr>
             </thead>
             <tbody>
-              @foreach ($subject as $subjects)
+              @foreach ($register as $registers)
                 <tr>
                   <td>
-                    {{ $subjects['id'] }}
+                    {{ $registers['id'] }}
                   </td>
                   <td>
                     <a>
-                      {{ $subjects['subject_1'] }}
+                      {{ $registers['first_name'] }}
                     </a>
                   </td>
                   <td>
                     <a>
-                      {{ $subjects['subject_2'] }}
+                      {{ $registers['middle_name'] }}
+                    </a>
+                  </td>
+                  <td>
+                    <a>
+                      {{ $registers['last_name'] }}
                     </a>
                   </td>
                   <td class="project_progress">
                     <a>
-                      {{ $subjects['subject_3'] }}
+                      {{ $registers['guardian_number'] }}
                     </a>
                   </td>
                   <td class="project-state">
                     <a>
-                      {{ $subjects->course['full_name'] }}
+                      {{ $registers->course['full_name'] }}
                     </a>
                   </td>
                   <td class="project-actions text-right d-flex justify-content-center">
-                      <a class="btn btn-info btn-sm mr-2" href="{{ route('subjects.edit', $subjects['id']) }}">
+                      <a class="btn btn-info btn-sm mr-2" href="{{ route('register.edit', $registers['id']) }}">
                         <i class="fas fa-pencil-alt"></i>
                           Edit
                       </a>
-                      <form action="{{ route('subjects.destroy', $subjects['id']) }}" method="post">
+                      <form action="{{ route('register.destroy', $registers['id']) }}" method="post">
                         @csrf
                         @method('DELETE')
                           <button type="submit" class="btn btn-danger btn-sm delete-btn">
@@ -83,5 +91,5 @@
           </table>
       </div>
     </div>
-    </section>
+  </section>
 @endsection

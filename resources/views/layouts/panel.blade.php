@@ -66,7 +66,7 @@
     </nav>
         @include('partials.header')
         <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
+        <div class="content-wrapper pt-2">
             @yield('content')
         </div>
   </div>

@@ -22,6 +22,8 @@ use Illuminate\Support\Facades\Route;
         Route::resource('courses', \App\Http\Controllers\Platform\CoursesController::class);
 
         Route::resource('subjects', \App\Http\Controllers\Platform\SubjectController::class);
+
+        Route::resource('register', App\Http\Controllers\Platform\RegisterController::class);
         
     });
 

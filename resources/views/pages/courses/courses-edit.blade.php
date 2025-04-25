@@ -1,9 +1,9 @@
 @extends('layouts.panel')
    
 @section('content')
-  <div class="card card-primary w-75 ml-2 mt-2">
+  <div class="card card-primary w-75 ml-2">
     <div class="card-header">
-      <h3 class="card-title">Edit Course</h3>
+      <h3 class="card-title">Modify Course</h3>
     </div>
     <form action="{{ route('courses.update', $courses['id']) }}" method="post">
       @csrf
@@ -24,7 +24,7 @@
                 @enderror
           </div>
           <div class="form-group">
-            <label for="Creation Date">Creation Date</label>
+            <label for="Creation Date">Creation Date <span class="text-danger">*</span></label>
               <input type="date" class="form-control" name="creation_date" value="{{ old('creation_date', \Carbon\Carbon::parse($courses->created_at)->format('Y-m-d')) }}">
                 @error('creation_date')
                   <div class="text-danger">{{ $message }}</div>

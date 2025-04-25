@@ -1,9 +1,9 @@
 @extends('layouts.panel')
 
 @section('content')
-  <div class="card card-primary w-75 ml-2 mt-2">
+  <div class="card card-primary w-75 ml-2">
     <div class="card-header">
-      <h3 class="card-title">Edit Subject</h3>
+      <h3 class="card-title">Change Subject</h3>
     </div>
     <form action="{{ route('subjects.update', $subject['id']) }}" method="post">
       @csrf
@@ -23,21 +23,21 @@
               @enderror
           </div>
           <div class="form-group">
-            <label for="Subject 1">Subject 1</label>
+            <label for="Subject 1">Subject 1 <span class="text-danger">*</span></label>
               <input type="text" class="form-control" value="{{ old($subject['subject_1'], $subject->subject_1) }}" name="subject_1" placeholder="">
                 @error('subject_1')
                   <div class="text-danger">{{ $message }}</div>
                 @enderror
           </div>
           <div class="form-group">
-            <label for="Subject 2">Subject 2</label>
+            <label for="Subject 2">Subject 2 <span class="text-danger">*</span></label>
               <input type="text" class="form-control" value="{{ old($subject['subject_2'], $subject->subject_2) }}" name="subject_2" placeholder="">
                 @error('subject_2')
                   <div class="text-danger">{{ $message }}</div>
                 @enderror
           </div>
           <div class="form-group">
-            <label for=Subject 3">Subject 3</label>
+            <label for=Subject 3">Subject 3 <span class="text-danger">*</span></label>
               <input type="text" class="form-control" value="{{ old($subject['subject_3'], $subject->subject_3) }}" name="subject_3" placeholder="">
                 @error('subject_3')
                   <div class="text-danger">{{ $message }}</div>

@@ -1,14 +1,14 @@
 @extends('layouts.panel')
 
 @section('content')
-  <div class="card card-primary w-75 ml-2 mt-2">
+  <div class="card card-primary w-75 ml-2">
     <div class="card-header">
-      <h3 class="card-title">Add Subject</h3>
+      <h3 class="card-title">Insert Subject</h3>
     </div>
     <form action="{{ route('subjects.store') }}" method="post">
       @csrf
         <div class="card-body">
-          <div class="form-group" data-select2-id="29">
+          <div class="form-group">
             <label for="Course Full Name">Course Full Name</label>
               <select class="form-control select2 select2-hidden-accessible" name="course_id" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true">
                 @foreach ($course as $courses)
@@ -20,29 +20,29 @@
               @enderror
           </div>
           <div class="form-group">
-            <label for="Subject 1">Subject 1</label>
-              <input type="text" class="form-control" name="subject_1" placeholder="">
+            <label for="Subject 1">Subject 1 <span class="text-danger">*</span></label>
+              <input type="text" class="form-control" name="subject_1">
                 @error('subject_1')
                   <div class="text-danger">{{ $message }}</div>
                 @enderror
           </div>
           <div class="form-group">
-            <label for="Subject 2">Subject 2</label>
-              <input type="text" class="form-control" name="subject_2" placeholder="">
+            <label for="Subject 2">Subject 2 <span class="text-danger">*</span></label>
+              <input type="text" class="form-control" name="subject_2">
                 @error('subject_2')
                   <div class="text-danger">{{ $message }}</div>
                 @enderror
           </div>
           <div class="form-group">
-            <label for=Subject 3">Subject 3</label>
-              <input type="text" class="form-control" name="subject_3" placeholder="">
+            <label for=Subject 3">Subject 3 <span class="text-danger">*</span></label>
+              <input type="text" class="form-control" name="subject_3">
                 @error('subject_3')
                   <div class="text-danger">{{ $message }}</div>
                 @enderror
           </div>
         </div>
         <div class="card-footer">
-          <button type="submit" class="btn btn-primary">Create Subject</button>
+          <button type="submit" class="btn btn-primary">Set Up Subject</button>
         </div>
     </form>
   </div>

@@ -13,4 +13,9 @@ class Course extends Model
     {
         return $this->hasMany(Subject::class);
     }
+
+    public function register()
+    {
+        return $this->hasMany(Register::class);
+    }
 }
