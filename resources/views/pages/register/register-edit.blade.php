@@ -22,6 +22,18 @@
               @enderror
           </div>
           <div class="form-group">
+            <label for="Select Session">Select Session <span class="text-danger">*</span></label>
+              <select class="form-control select2 select2-hidden-accessible" name="session_id" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                @foreach ($session as $sessions)  
+                    <option value="{{$sessions['id']}}" {{ $sessions['id'] == $register->session_id ? 'selected' : '' }}>
+                    {{$sessions['release_year']}}
+                @endforeach  
+              </select>
+              @error('session_id')
+                <div class="text-danger">{{ $message }}</div>
+              @enderror
+          </div>
+          <div class="form-group">
             <label for="First Name">First Name <span class="text-danger">*</span></label>
               <input type="text" class="form-control" name="first_name" value="{{ old('first_name', $register->first_name) }}">
                 @error('first_name')

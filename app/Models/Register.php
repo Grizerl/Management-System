@@ -9,6 +9,7 @@ class Register extends Model
     protected $table = 'registers';
     protected $fillable = [
         'course_id',
+        'session_id',
         'first_name',
         'middle_name',
         'last_name',
@@ -25,5 +26,10 @@ class Register extends Model
     public function subject()
     {
         return $this->belongsTo(Subject::class);
+    }
+
+    public function session()
+    {
+        return $this->belongsTo(Academic_Sessions::class);
     }
 }

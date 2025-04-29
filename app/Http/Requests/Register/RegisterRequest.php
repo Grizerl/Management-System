@@ -29,6 +29,7 @@ class RegisterRequest extends FormRequest
             'gender' => 'required|in:male,female,other',
             'occupation' => 'nullable|string|max:255',
             'course_id' => 'required|exists:courses,id',
+            'session_id' => 'required',
         ];
     }
 }

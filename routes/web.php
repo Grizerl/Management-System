@@ -1,32 +1,35 @@
 <?php
 
-use App\Http\Controllers\CoursesController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Auth\ExitController;
+use App\Http\Controllers\Platform\CoursesController;
+use App\Http\Controllers\Platform\SubjectController;
+use App\Http\Controllers\Platform\RegisterController;
+use App\Http\Controllers\Platform\SessionController;
+use App\Http\Controllers\Platform\StudentController;
 use App\Http\Middleware\Role;
-use Illuminate\Support\Facades\Route;
 
     Route::get('/', function () {
         return redirect()->route('login');
     });
 
-    Route::prefix('/panel')->middleware(['auth', 'verified', Role::class])->group(function() {
+    Route::prefix('/panel')->middleware(['auth', 'verified', Role::class])->group(function () {
 
-        Route::get('/dashboard', function () {
-            return view('dashboard');
-        })->name('dashboard');
+        Route::get('/dashboard', fn() => view('dashboard'))->name('dashboard');
 
-        Route::get('/home',[DashboardController::class, 'index'])
-            ->name('manager_system');
+        Route::get('/home', [DashboardController::class, 'index'])->name('manager_system');
 
-        Route::resource('courses', \App\Http\Controllers\Platform\CoursesController::class);
+        Route::resource('courses', CoursesController::class);
+        Route::resource('subjects', SubjectController::class);
+        Route::resource('register', RegisterController::class);
+        Route::resource('session', SessionController::class);
 
-        Route::resource('subjects', \App\Http\Controllers\Platform\SubjectController::class);
+        Route::get('students', [StudentController::class, 'student'])->name('student.view');
 
-        Route::resource('register', App\Http\Controllers\Platform\RegisterController::class);
-        
+        Route::post('logout', [ExitController::class, 'exit'])->name('exit');
     });
-
 
     Route::middleware('auth')->group(function () {
 

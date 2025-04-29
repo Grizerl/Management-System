@@ -113,7 +113,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('register.create') }}" class="nav-link">
+                <a href="{{ route('session.create') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                     <p>
                       Begin Session
@@ -121,7 +121,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('register.index') }}" class="nav-link">
+                <a href="{{ route('session.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                     <p>
                       Check Session                    
@@ -131,7 +131,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('student.view') }}" class="nav-link">
               <i class="fa-solid fa-users-rays"></i>
                 <p>
                   Oversee Students
@@ -139,7 +139,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <form action="" method="post">
+            <form action="{{ route('exit') }}" method="post">
               @csrf
                 <button style="border: none;" class="nav-link mt-2" type="submit">
                     <i class="fa-solid fa-right-from-bracket"></i>

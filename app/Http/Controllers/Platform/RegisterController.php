@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Platform;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Register\RegisterRequest;
+use App\Models\Academic_Sessions;
 use App\Models\Course;
 use App\Models\Register;
 
@@ -24,7 +25,8 @@ class RegisterController extends Controller
     public function create()
     {
         $course = Course::all();
-        return view('pages.register.register-add', compact('course'));
+        $session = Academic_Sessions::all();
+        return view('pages.register.register-add', compact('course', 'session'));
     }
 
     /**
@@ -40,6 +42,7 @@ class RegisterController extends Controller
             'gender' => $registerRequest->gender,
             'occupation' => $registerRequest->occupation,
             'course_id' => $registerRequest->course_id,
+            'session_id' => $registerRequest->session_id,
        ]);
 
        return redirect()->back()->with('success', 'Student successfully registered!');
@@ -52,7 +55,8 @@ class RegisterController extends Controller
     {
         $register = Register::findOrFail($id);
         $course = Course::all();
-        return view('pages.register.register-edit', compact('course','register'));
+        $session = Academic_Sessions::all();
+        return view('pages.register.register-edit', compact('course','register', 'session'));
     }
 
     /**

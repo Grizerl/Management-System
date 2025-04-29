@@ -9,49 +9,34 @@ use Illuminate\Http\Request;
 
 class CoursesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $courses = Course::all();
         return view('pages.courses.view', compact('courses'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('pages.courses.courses-add');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreRequest $storeRequest)
+    public function store(StoreRequest $request)
     {
         Course::create([
-            'short_name' => $storeRequest['short_name'],
-            'full_name' => $storeRequest['full_name'],
-            'created_at' => $storeRequest['creation_date'],
+            'short_name' => $request->short_name,
+            'full_name' => $request->full_name,
+            'created_at' => $request->creation_date,
         ]);
 
-        return redirect()->back()->with('success', 'Course created successfully.');
+        return back()->with('success', 'Course created successfully.');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit($id)
     {
-        $courses = Course::findOrFail($id);
-        return view('pages.courses.courses-edit', compact('courses'));
+        $course = Course::findOrFail($id);
+        return view('pages.courses.courses-edit', compact('course'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, $id)
     {
         $course = Course::findOrFail($id);
@@ -62,18 +47,18 @@ class CoursesController extends Controller
             'creation_date' => 'required|date',
         ]);
 
-        $course->update($validated);
+        $course->update([
+            'short_name' => $validated['short_name'],
+            'full_name' => $validated['full_name'],
+            'created_at' => $validated['creation_date'],
+        ]);
 
-        return redirect()->back()->with('success', 'The course has been successfully updated.');
+        return back()->with('success', 'Course updated successfully.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy($id)
     {
-        $course = Course::findOrFail($id);
-        $course->delete();
-        return redirect()->back()->with('success', 'Course deleted successfully.');
+        Course::findOrFail($id)->delete();
+        return back()->with('success', 'Course deleted successfully.');
     }
 }
