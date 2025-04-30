@@ -8,9 +8,6 @@ use Illuminate\Support\Facades\Auth;
 
 class Role
 {
-    /**
-     * Обробка вхідного запиту.
-     */
     public function handle(Request $request, Closure $next)
     {
         if (Auth::check() && Auth::user()->role === 'admin') {

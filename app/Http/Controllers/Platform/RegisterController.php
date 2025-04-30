@@ -34,16 +34,7 @@ class RegisterController extends Controller
      */
     public function store(RegisterRequest $registerRequest)
     {
-       Register::create([
-            'first_name' => $registerRequest->first_name,
-            'middle_name' => $registerRequest->middle_name,
-            'last_name' => $registerRequest->last_name,
-            'guardian_number' => $registerRequest->guardian_number,
-            'gender' => $registerRequest->gender,
-            'occupation' => $registerRequest->occupation,
-            'course_id' => $registerRequest->course_id,
-            'session_id' => $registerRequest->session_id,
-       ]);
+       Register::create($registerRequest->validated());
 
        return redirect()->back()->with('success', 'Student successfully registered!');
     }
@@ -76,8 +67,7 @@ class RegisterController extends Controller
      */
     public function destroy($id)
     {
-        $register = Register::findOrFail($id);
-        $register->delete();
+        $register = Register::findOrFail($id)->delete();
         return redirect()->back()->with('success', 'Student successfully deleted!');
     }
 }

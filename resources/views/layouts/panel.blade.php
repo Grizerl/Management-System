@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3//admin/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <title>Admin|Student Management System</title>
+  <title>Administrator Panel for Student Management</title>
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
@@ -40,19 +40,19 @@
           <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-          <a href="{{ route('manager_system') }}" class="nav-link">Home</a>
+          <a href="{{ route('manager_system') }}" class="nav-link">Dashboard</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-          <a href="{{ route('courses.index') }}" class="nav-link">Course</a>
+          <a href="{{ route('courses.index') }}" class="nav-link">Course Management</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-          <a href="" class="nav-link">Subject</a>
+          <a href="{{ route('subjects.index') }}" class="nav-link">Subject Overview</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-          <a href="" class="nav-link">Session</a>
+          <a href="{{ route('session.index') }}" class="nav-link">Academic Sessions</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-          <a href="" class="nav-link">Student</a>
+          <a href="{{ route('student.view') }}" class="nav-link">Student Directory</a>
         </li>
       </ul>
       <!-- Right navbar links -->

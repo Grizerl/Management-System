@@ -30,11 +30,7 @@ class SessionController extends Controller
      */
     public function store(SessionRequest $sessionRequest)
     {
-        Academic_Sessions::create([
-            'start_date' => $sessionRequest->start_date,
-            'end_date' => $sessionRequest->end_date,
-            'release_year' => $sessionRequest->release_year
-        ]);
+        Academic_Sessions::create($sessionRequest->validated());
 
         return redirect()->back()->with('success', 'Session successfully create!');
     }
@@ -44,8 +40,7 @@ class SessionController extends Controller
      */
     public function destroy(string $id)
     {
-        $session = Academic_Sessions::findOrFail($id);
-        $session->delete();
+        $session = Academic_Sessions::findOrFail($id)->delete();
         return redirect()->back()->with('success', 'Session successfully deleted!');
     }
 }

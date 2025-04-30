@@ -22,19 +22,15 @@ class CoursesController extends Controller
 
     public function store(StoreRequest $request)
     {
-        Course::create([
-            'short_name' => $request->short_name,
-            'full_name' => $request->full_name,
-            'created_at' => $request->creation_date,
-        ]);
+        Course::create($request->validated());
 
         return back()->with('success', 'Course created successfully.');
     }
 
     public function edit($id)
     {
-        $course = Course::findOrFail($id);
-        return view('pages.courses.courses-edit', compact('course'));
+        $courses = Course::findOrFail($id);
+        return view('pages.courses.courses-edit', compact('courses'));
     }
 
     public function update(Request $request, $id)
@@ -47,11 +43,7 @@ class CoursesController extends Controller
             'creation_date' => 'required|date',
         ]);
 
-        $course->update([
-            'short_name' => $validated['short_name'],
-            'full_name' => $validated['full_name'],
-            'created_at' => $validated['creation_date'],
-        ]);
+        $course->update($validated);
 
         return back()->with('success', 'Course updated successfully.');
     }

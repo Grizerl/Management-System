@@ -33,12 +33,7 @@ class SubjectController extends Controller
      */
     public function store(SubjectsRequest $subjectsRequest)
     {
-        Subject::create([
-            'course_id' => $subjectsRequest->full_name,
-            'subject_1' => $subjectsRequest->subject_1,
-            'subject_2' => $subjectsRequest->subject_2,
-            'subject_3' => $subjectsRequest->subject_3,
-        ]);
+        Subject::create($subjectsRequest->validated());
 
         return redirect()->back()->with('success', 'Subject created successfully.');
     }
@@ -77,9 +72,7 @@ class SubjectController extends Controller
      */
     public function destroy($id)
     {
-        $subject = Subject::findOrFail($id);
-        $subject->delete();
-        
+        $subject = Subject::findOrFail($id)->delete();
         return redirect()->back()->with('success', 'Subject deleted successfully.');
     }
 }
