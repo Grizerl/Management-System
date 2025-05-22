@@ -8,7 +8,12 @@ use Illuminate\Support\Facades\Auth;
 
 class Role
 {
-    public function handle(Request $request, Closure $next)
+    /**
+     * Summary of handle
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure $next
+     */
+    public function handle(Request $request, Closure $next): mixed
     {
         if (Auth::check() && Auth::user()->role === 'admin') {
             return $next($request);

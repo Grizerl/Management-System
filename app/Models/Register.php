@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Register extends Model
 {
@@ -18,18 +19,30 @@ class Register extends Model
         'occupation'
     ];
 
-    public function course()
+    /**
+     * Summary of course
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<Course, Register>
+     */
+    public function course(): BelongsTo
     {
         return $this->belongsTo(Course::class);
     }
 
-    public function subject()
+    /**
+     * Summary of subject
+     * @return BelongsTo<Subject, Register>
+     */
+    public function subject(): BelongsTo
     {
         return $this->belongsTo(Subject::class);
     }
 
-    public function session()
+    /**
+     * Summary of session
+     * @return BelongsTo<AcademicSessions, Register>
+     */
+    public function session(): BelongsTo
     {
-        return $this->belongsTo(Academic_Sessions::class);
+        return $this->belongsTo(AcademicSessions::class);
     }
 }

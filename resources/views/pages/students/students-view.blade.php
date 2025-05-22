@@ -90,6 +90,9 @@
             </tbody>
           </table>
       </div>
+       <div class="mt-2 ml-2">
+          {{ $view_students->links('pagination::bootstrap-4') }}
+        </div>
     </div>
   </section>
 @endsection

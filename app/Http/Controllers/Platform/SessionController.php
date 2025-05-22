@@ -4,43 +4,51 @@ namespace App\Http\Controllers\Platform;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Session\SessionRequest;
-use App\Models\Academic_Sessions;
+use App\Models\AcademicSessions;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class SessionController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Summary of index
+     * @return View
      */
-    public function index()
+    public function index(): View
     {
-        $session = Academic_Sessions::all();
+        $session = AcademicSessions::paginate(15);
         return view('pages.session.view', compact('session'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Summary of create
+     * @return View
      */
-    public function create()
+    public function create(): View
     {
         return view('pages.session.session-add');
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Summary of store
+     * @param \App\Http\Requests\Session\SessionRequest $sessionRequest
+     * @return RedirectResponse
      */
-    public function store(SessionRequest $sessionRequest)
+    public function store(SessionRequest $sessionRequest): RedirectResponse
     {
-        Academic_Sessions::create($sessionRequest->validated());
+        AcademicSessions::create($sessionRequest->validated());
 
         return redirect()->back()->with('success', 'Session successfully create!');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Summary of destroy
+     * @param int $id
+     * @return RedirectResponse
      */
-    public function destroy(string $id)
+    public function destroy(int $id): RedirectResponse
     {
-        $session = Academic_Sessions::findOrFail($id)->delete();
-        return redirect()->back()->with('success', 'Session successfully deleted!');
+        AcademicSessions::findOrFail($id)->delete();
+        return redirect()->back();
     }
 }

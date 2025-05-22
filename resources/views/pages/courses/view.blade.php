@@ -79,6 +79,9 @@
               @endforeach
             </tbody>
           </table>
+          <div class="mt-2 ml-2">
+            {{ $courses->links('pagination::bootstrap-4') }}
+          </div>
       </div>
     </div>
   </section>

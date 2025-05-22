@@ -25,12 +25,12 @@ class SessionRequest extends FormRequest
             'start_date' => [
                 'required',
                 'date',
-                'before_or_equal:end_date', 
+                'before_or_equal:end_date',
             ],
             'end_date' => [
                 'required',
                 'date',
-                'after_or_equal:start_date', 
+                'after_or_equal:start_date',
             ],
             'release_year' => [
                 'required',
@@ -38,5 +38,5 @@ class SessionRequest extends FormRequest
             ]
         ];
     }
-    
+
 }

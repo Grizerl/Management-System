@@ -4,14 +4,13 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class () extends Migration {
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::table('academic__sessions', function (Blueprint $table) {
+        Schema::table('academic__sessions', function (Blueprint $table): void {
             $table->string('release_year')->after('end_date');
         });
     }
@@ -21,7 +20,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('academic__sessions', function (Blueprint $table) {
+        Schema::table('academic__sessions', function (Blueprint $table): void {
             $table->dropColumn('release_year');
         });
     }

@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Illuminate\Contracts\View\View;
 
 class DashboardController extends BaseController
 {
-    public function index()
+    /**
+     * Summary of index
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function index(): View
     {
         $data = $this->service->count();
         return view('pages.main', compact('data'));

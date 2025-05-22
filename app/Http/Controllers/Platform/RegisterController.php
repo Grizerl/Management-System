@@ -4,56 +4,67 @@ namespace App\Http\Controllers\Platform;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Register\RegisterRequest;
-use App\Models\Academic_Sessions;
+use App\Models\AcademicSessions;
 use App\Models\Course;
 use App\Models\Register;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class RegisterController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Summary of index
+     * @return View
      */
-    public function index()
+    public function index(): View
     {
-        $register = Register::all();
+        $register = Register::paginate(15);
         return view('pages.register.view', compact('register'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Summary of create
+     * @return View
      */
-    public function create()
+    public function create(): View
     {
-        $course = Course::all();
-        $session = Academic_Sessions::all();
+        $course = Course::select('id', 'short_name')->get();
+        $session = AcademicSessions::select('id', 'release_year')->get();
         return view('pages.register.register-add', compact('course', 'session'));
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Summary of store
+     * @param \App\Http\Requests\Register\RegisterRequest $registerRequest
+     * @return RedirectResponse
      */
-    public function store(RegisterRequest $registerRequest)
+    public function store(RegisterRequest $registerRequest): RedirectResponse
     {
-       Register::create($registerRequest->validated());
+        Register::create($registerRequest->validated());
 
-       return redirect()->back()->with('success', 'Student successfully registered!');
+        return redirect()->back()->with('success', 'Student successfully registered!');
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Summary of edit
+     * @param int $id
+     * @return View
      */
-    public function edit($id)
+    public function edit(int $id): View
     {
         $register = Register::findOrFail($id);
         $course = Course::all();
-        $session = Academic_Sessions::all();
-        return view('pages.register.register-edit', compact('course','register', 'session'));
+        $session = AcademicSessions::all();
+        return view('pages.register.register-edit', compact('course', 'register', 'session'));
     }
 
     /**
-     * Update the specified resource in storage.
+     * Summary of update
+     * @param \App\Http\Requests\Register\RegisterRequest $registerRequest
+     * @param int $id
+     * @return RedirectResponse
      */
-    public function update(RegisterRequest $registerRequest, $id)
+    public function update(RegisterRequest $registerRequest, int $id): RedirectResponse
     {
         $register = Register::findOrFail($id);
 
@@ -61,13 +72,14 @@ class RegisterController extends Controller
 
         return redirect()->back()->with('success', 'Student information successfully updated!');
     }
-
     /**
-     * Remove the specified resource from storage.
+     * Summary of destroy
+     * @param int $id
+     * @return RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(int $id): RedirectResponse
     {
-        $register = Register::findOrFail($id)->delete();
+        Register::findOrFail($id)->delete();
         return redirect()->back()->with('success', 'Student successfully deleted!');
     }
 }

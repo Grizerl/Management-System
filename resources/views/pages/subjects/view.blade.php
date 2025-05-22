@@ -82,6 +82,9 @@
             </tbody>
           </table>
       </div>
+      <div class="mt-2 ml-2">
+        {{ $subject->links('pagination::bootstrap-4') }}
+      </div>
     </div>
     </section>
 @endsection

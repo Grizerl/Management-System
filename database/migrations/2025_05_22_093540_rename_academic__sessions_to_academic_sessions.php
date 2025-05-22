@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 return new class () extends Migration {
@@ -10,12 +9,7 @@ return new class () extends Migration {
      */
     public function up(): void
     {
-        Schema::create('courses', function (Blueprint $table): void {
-            $table->id();
-            $table->string('short_name');
-            $table->string('full_name');
-            $table->timestamps();
-        });
+        Schema::rename('academic__sessions', 'academic_sessions');
     }
 
     /**
@@ -23,6 +17,6 @@ return new class () extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('courses');
+        Schema::rename('academic_sessions', 'academic__sessions');
     }
 };

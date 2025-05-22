@@ -43,6 +43,17 @@
                   <div class="text-danger">{{ $message }}</div>
                 @enderror
           </div>
+           @if(session('success'))
+            <div class="alert alert-success alert-dismissible fade show d-flex align-items-center justify-content-between p-3 rounded shadow-sm" role="alert" style="font-size: 0.9rem;">
+              <div class="d-flex align-items-center">
+                  <i class="icon fa fa-check mr-2" style="font-size: 1.2rem;"></i>
+                    <span>{{ session('success') }}</span>
+              </div>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            @endif
         </div>
         <div class="card-footer">
           <button type="submit" class="btn btn-primary">Update Subject</button>

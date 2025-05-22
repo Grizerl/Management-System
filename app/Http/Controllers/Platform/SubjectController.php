@@ -6,32 +6,38 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Subject\SubjectsRequest;
 use App\Models\Course;
 use App\Models\Subject;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class SubjectController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Summary of index
+     * @return \Illuminate\Contracts\View\View
      */
-    public function index()
+    public function index(): View
     {
-        $subject = Subject::all();
+        $subject = Subject::paginate(15);
         return view('pages.subjects.view', compact('subject'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Summary of create
+     * @return View
      */
-    public function create()
+    public function create(): View
     {
         $course = Course::with('subject')->get();
         return view('pages.subjects.subjects-add', compact('course'));
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Summary of store
+     * @param \App\Http\Requests\Subject\SubjectsRequest $subjectsRequest
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(SubjectsRequest $subjectsRequest)
+    public function store(SubjectsRequest $subjectsRequest): RedirectResponse
     {
         Subject::create($subjectsRequest->validated());
 
@@ -39,19 +45,24 @@ class SubjectController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Summary of edit
+     * @param int $id
+     * @return View
      */
-    public function edit($id)
+    public function edit(int $id): View
     {
         $subject = Subject::findOrFail($id);
         $course = Course::with('subject')->get();
-        return view('pages.subjects.subjects-edit', compact('course','subject'));
+        return view('pages.subjects.subjects-edit', compact('course', 'subject'));
     }
 
     /**
-     * Update the specified resource in storage.
+     * Summary of update
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
+     * @return RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id): RedirectResponse
     {
         $subject = Subject::findOrFail($id);
 
@@ -68,11 +79,13 @@ class SubjectController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Summary of destroy
+     * @param int $id
+     * @return RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(int $id): RedirectResponse
     {
-        $subject = Subject::findOrFail($id)->delete();
+        Subject::findOrFail($id)->delete();
         return redirect()->back()->with('success', 'Subject deleted successfully.');
     }
 }
