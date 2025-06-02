@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class AcademicSessions extends Model
+class AcademicSession extends Model
 {
     protected $table = 'academic_sessions';
 
@@ -17,7 +17,7 @@ class AcademicSessions extends Model
 
     /**
      * Summary of register
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<Register, AcademicSessions>
+     * @return HasMany<Register, AcademicSession>
      */
     public function register(): HasMany
     {

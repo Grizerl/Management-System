@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Platform;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Register\RegisterRequest;
-use App\Models\AcademicSessions;
+use App\Models\AcademicSession;
 use App\Models\Course;
 use App\Models\Register;
 use Illuminate\Contracts\View\View;
@@ -29,7 +29,7 @@ class RegisterController extends Controller
     public function create(): View
     {
         $course = Course::select('id', 'short_name')->get();
-        $session = AcademicSessions::select('id', 'release_year')->get();
+        $session = AcademicSession::select('id', 'release_year')->get();
         return view('pages.register.register-add', compact('course', 'session'));
     }
 
@@ -54,7 +54,7 @@ class RegisterController extends Controller
     {
         $register = Register::findOrFail($id);
         $course = Course::all();
-        $session = AcademicSessions::all();
+        $session = AcademicSession::all();
         return view('pages.register.register-edit', compact('course', 'register', 'session'));
     }
 

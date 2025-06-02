@@ -39,10 +39,10 @@ class Register extends Model
 
     /**
      * Summary of session
-     * @return BelongsTo<AcademicSessions, Register>
+     * @return BelongsTo<AcademicSession, Register>
      */
     public function session(): BelongsTo
     {
-        return $this->belongsTo(AcademicSessions::class);
+        return $this->belongsTo(AcademicSession::class);
     }
 }

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Platform;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Session\SessionRequest;
-use App\Models\AcademicSessions;
+use App\Models\AcademicSession;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 
@@ -16,7 +16,7 @@ class SessionController extends Controller
      */
     public function index(): View
     {
-        $session = AcademicSessions::paginate(15);
+        $session = AcademicSession::paginate(15);
         return view('pages.session.view', compact('session'));
     }
 
@@ -36,7 +36,7 @@ class SessionController extends Controller
      */
     public function store(SessionRequest $sessionRequest): RedirectResponse
     {
-        AcademicSessions::create($sessionRequest->validated());
+        AcademicSession::create($sessionRequest->validated());
 
         return redirect()->back()->with('success', 'Session successfully create!');
     }
@@ -48,7 +48,7 @@ class SessionController extends Controller
      */
     public function destroy(int $id): RedirectResponse
     {
-        AcademicSessions::findOrFail($id)->delete();
+        AcademicSession::findOrFail($id)->delete();
         return redirect()->back();
     }
 }

@@ -13,11 +13,11 @@ use App\Http\Middleware\Role;
 
 Route::get('/', fn () => redirect()->route('login'));
 
-Route::prefix('/panel')->middleware(['auth', 'verified', Role::class])->group(function () {
+Route::prefix('panel')->middleware(['auth', 'verified', Role::class])->group(function () {
 
-    Route::get('/dashboard', fn () => view('dashboard'))->name('dashboard');
+    Route::get('dashboard', fn () => view('dashboard'))->name('dashboard');
 
-    Route::get('/home', [DashboardController::class, 'index'])->name('manager_system');
+    Route::get('home', [DashboardController::class, 'index'])->name('manager_system');
 
     Route::resources([
         'courses'  => CoursesController::class,
